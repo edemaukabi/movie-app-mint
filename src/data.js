@@ -26,5 +26,6 @@ export const data = [
         id: 4,
         title: 'The Shawshank Redemption',
         posterUrl: workspace,
-        description: 'Framed in the 1940s for the'
+        description: 'Framed in the 1940s for the',
+        rating: 2
     }]
