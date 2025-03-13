@@ -1,40 +1,32 @@
-import { useState } from "react";
-import MovieList from "./components/MovieList";
-import { data } from "./data";
-import Filter from "./components/Filter";
-import workspace from "./assets/workspace.jpg"
-import NewMovieForm from "./components/NewMovieForm";
+import { Routes, Route, Link } from "react-router";
+import Movies from "./pages/Movies";
+import Users from "./pages/Users";
+import Product from "./pages/Product";
 
 const App = () => {
-  const [movies, setMovies] = useState(data);
-  const [filteredMovies, setFilteredMovies] = useState(movies);
-
-  const handleFilterMovies = ({ title, rating }) => {
-    let tempMovies = movies;
-    if (title) {
-      tempMovies = tempMovies.filter((tempMovie) =>
-        tempMovie.title.toLowerCase().includes(title.toLowerCase())
-      );
-    }
-    if (rating) {
-      tempMovies = tempMovies.filter(
-        (tempMovie) => tempMovie.rating == parseInt(rating, 10)
-      );
-    }
-    setFilteredMovies(tempMovies);
-  };
-
-  const addNewMovie = (newMovie) => {
-    setMovies([newMovie, ...movies ])
-    setFilteredMovies([newMovie, ...movies]);
-  };
   return (
-    <div>
-      <h1>My Movie App</h1>
-      <NewMovieForm currentLength={movies.length} onAddMovie={addNewMovie}/>
-      <Filter onFilter={handleFilterMovies} />
-      <MovieList movies={filteredMovies} />
-    </div>
+    <>
+      <nav className="navbar navbar-light">
+         <ul className="nav navbar-nav">
+           <li>
+             {" "}
+             <Link to="/">Homes</Link>
+           </li>
+           <li>
+             <Link to="/users">Users</Link>
+           </li>
+           <li>
+              <Link to="/product/1">Product</Link>
+           </li>
+         </ul>
+       </nav>
+
+      <Routes>
+        <Route path="/" element={<Movies />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/product/:id" element={<Product />} />
+      </Routes>
+    </>
   );
 };
 
