@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import workspace from "../assets/workspace.jpg";
 
 const NewMovieForm = ({ currentLength, onAddMovie }) => {
   const [movie, setMovie] = useState({
     title: "",
-    description: "",
+    // description: "",
     posterUrl: workspace,
     rating: "",
   });
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,6 +24,7 @@ const NewMovieForm = ({ currentLength, onAddMovie }) => {
     if (movie.title && movie.description && movie.posterUrl && movie.rating) {
       onAddMovie({
         ...movie,
+        description: inputRef.current.value,
         id: currentLength + 1,
         rating: parseInt(movie.rating),
       });
@@ -45,10 +52,11 @@ const NewMovieForm = ({ currentLength, onAddMovie }) => {
         <input
           type="text"
           name="description"
+          ref={inputRef}
           placeholder="Type your movie desc"
           required
-          value={movie.description}
-          onChange={handleChange}
+          // value={movie.description}
+          // onChange={handleChange}
         />
         <input
           type="text"

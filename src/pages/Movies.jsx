@@ -4,6 +4,7 @@ import { data } from "../data";
 import Filter from "../components/Filter";
 import workspace from "../assets/workspace.jpg"
 import NewMovieForm from "../components/NewMovieForm";
+import Counter from "../components/Counter";
 
 const Movies = () => {
   const [movies, setMovies] = useState(data);
@@ -31,6 +32,7 @@ const Movies = () => {
   return (
     <div>
       <h1>My MoviMovies</h1>
+      <Counter />
       <NewMovieForm currentLength={movies.length} onAddMovie={addNewMovie}/>
       <Filter onFilter={handleFilterMovies} />
       <MovieList movies={filteredMovies} />
