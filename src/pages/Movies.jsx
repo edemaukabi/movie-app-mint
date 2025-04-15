@@ -32,6 +32,7 @@ const Movies = () => {
   return (
     <div>
       <h1>My MoviMovies</h1>
+      <h2>My update</h2>
       <Counter />
       <NewMovieForm currentLength={movies.length} onAddMovie={addNewMovie}/>
       <Filter onFilter={handleFilterMovies} />
